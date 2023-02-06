@@ -1,4 +1,10 @@
+import java.util.ArrayList;
+
 public class Game {
+    
+    int winnerValue;
+    
+    
     static void play() {
         int[][] board = new int[4][4];
         Board gameBoard = new Board(board);
@@ -28,6 +34,21 @@ public class Game {
                 
             }
         }
+    }
+    
+    
+    private static int leftOver {
+        int answer = 0;
+		//traverse the 2D board
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				//add answer only if we identify the tile is the same
+				if (board[i][j] == a)
+					answer++;
+			}
+		}
+		return answer;
+        
     }
 
     public static void main(String[] args) {
