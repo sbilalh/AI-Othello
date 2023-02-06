@@ -37,7 +37,7 @@ public class Game {
     }
     
     
-    private static int leftOver {
+    private static int winnerValue {
         int answer = 0;
 		//traverse the 2D board
 		for (int i = 0; i < board.length; i++) {
@@ -47,10 +47,12 @@ public class Game {
 					answer++;
 			}
 		}
+	    
 		return answer;
         
     }
 
+	
     public static void main(String[] args) {
         play();
     }
