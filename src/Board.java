@@ -7,7 +7,10 @@ public class Board {
     static int BLACK = 1;
     static int WHITE = -1;
     static int EMPTY = 0;
-
+    
+    //game over
+    static boolean gameover = false;
+    
     // setters and getters
     public Board(int[][] board) {
         this.board = board;
@@ -121,5 +124,6 @@ public class Board {
         // if loop exited then piece could not be placed
         return false;
     }
+    
 
 }
