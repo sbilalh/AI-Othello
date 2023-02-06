@@ -151,7 +151,9 @@ public class Game {
         System.out.println();
         System.out.println();
     }
+    
 
+	
     public static void main(String[] args) {
         Game newGame = new Game();
         newGame.play();
