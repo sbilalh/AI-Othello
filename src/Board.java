@@ -9,7 +9,7 @@ public class Board {
     static int EMPTY = 0;
     
     //game over
-    static boolean gameover = false;
+    static boolean gameOver = false;
     
     // setters and getters
     public Board(int[][] board) {
