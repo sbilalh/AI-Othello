@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
     
     int winnerValue;
-    
+   
     
     static void play() {
         int[][] board = new int[4][4];
@@ -37,7 +37,7 @@ public class Game {
     }
     
     
-    private static int winnerValue {
+    private static int leftOver {
         int answer = 0;
 		//traverse the 2D board
 		for (int i = 0; i < board.length; i++) {
