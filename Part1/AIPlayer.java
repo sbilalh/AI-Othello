@@ -12,7 +12,7 @@ public class AIPlayer extends Player {
     // creates a copy of the board and calls minmax on that cpy with a depth of 10
     public Move getMove(Board board) {
         Board copy = new Board(board.copyBoard());
-        minmax(copy, 10, getPlayerNumber());
+        minmax(copy, getPlayerNumber());
         String moveString = bestMove.toString();
         String aiMove = parseMove(moveString);
         System.out.println("AI move: " + aiMove);
@@ -20,9 +20,9 @@ public class AIPlayer extends Player {
     }
 
     // minmax algorithm
-    private int minmax(Board board, int depth, int player) {
+    private int minmax(Board board, int player) {
         // returns 0 if depth limit is reached or the game is over
-        if (depth == 0 || board.isGameOver()) {
+        if (board.isGameOver()) {
             return 0;
         }
 
@@ -36,7 +36,7 @@ public class AIPlayer extends Player {
             // update the board for that move
             board.updateBoard(move, player);
             // recursively call minmax
-            int score = minmax(board, depth - 1, 3 - player);
+            int score = minmax(board, 3 - player);
 
             // if current player is AI then set best score to the maximum of bestScore and
             // the opponents score
