@@ -11,8 +11,8 @@ public class Game {
         Board gameBoard = new Board(board);
         gameBoard.populateBoard();
 
-        // quick fix: boolean for skipping blacks turn if white makes an invalid move
-        boolean dontSkip = true;
+        // boolean for skipping your turn if no legal move
+        boolean skip = false;
 
         // printing introduction message and asking user for their choice of color
         System.out.println("------------------------------");
@@ -37,22 +37,27 @@ public class Game {
                 // if no more valid moves for black then print that message and break from game
                 // loop
                 if (gameBoard.getValidMoves(1).size() == 0) {
-                    System.out.println("No more valid moves for black.");
-                    break;
+                    System.out.println("No valid moves for black.");
+                    skip = true;
                 }
 
-                // create new human player object and get humans move
-                HumanPlayer human = new HumanPlayer(1);
-                Move first = human.getMove(gameBoard);
+                if (!skip) {
+                    // create new human player object and get humans move
+                    HumanPlayer human = new HumanPlayer(1);
+                    Move first = human.getMove(gameBoard);
 
-                // update the board, if cannot update board then enter the loop
-                if (!gameBoard.updateBoard(first, 1)) {
-                    // black entered invalid move, prompt to try again
-                    System.out.println("Invalid move, try again.");
-                    continue;
+                    // update the board, if cannot update board then enter the loop
+                    if (!gameBoard.updateBoard(first, 1)) {
+                        // black entered invalid move, prompt to try again
+                        System.out.println("Invalid move, try again.");
+                        continue;
+                    }
+                    // print board after blacks turn
+                    printBoard(gameBoard.getBoard());
                 }
-                // print board after blacks turn
-                printBoard(gameBoard.getBoard());
+
+                // reset skip
+                skip = false;
 
                 // create new ai player object and get ai's move
                 AIPlayer ai = new AIPlayer(2);
@@ -61,8 +66,8 @@ public class Game {
                 // if no more valid moves for white then print that message and break from game
                 // loop
                 if (second == null) {
-                    System.out.println("No more valid moves for white.");
-                    break;
+                    System.out.println("No valid moves for white.");
+                    continue;
                 }
 
                 // update the board
@@ -70,32 +75,36 @@ public class Game {
                 // print the board after whites turn
                 printBoard(gameBoard.getBoard());
             }
+            
             // if human picks white then enter if condition for that case
             else {
 
-                if (dontSkip) {
-                    // create new ai player object and get ai's move
-                    AIPlayer ai = new AIPlayer(1);
-                    Move first = ai.getMove(gameBoard);
+                // create new ai player object and get ai's move
+                AIPlayer ai = new AIPlayer(1);
+                Move first = ai.getMove(gameBoard);
 
-                    // if no more valid moves for black then print that message and break from game
-                    // loop
-                    if (first == null) {
-                        System.out.println("No more valid moves for black.");
-                        break;
-                    }
+                // if no more valid moves for black then print that message and break from game
+                // loop
+                if (first == null) {
+                    System.out.println("No valid moves for black.");
+                    skip = true;
+                }
 
+                if (!skip) {
                     // update the board
                     gameBoard.updateBoard(first, 1);
                     // print the board after blacks turn
                     printBoard(gameBoard.getBoard());
                 }
 
+                // reset skip
+                skip = false;
+
                 // if no more valid moves for white then print that message and break from game
                 // loop
                 if (gameBoard.getValidMoves(2).size() == 0) {
-                    System.out.println("No more valid moves for white.");
-                    break;
+                    System.out.println("No valid moves for white.");
+                    continue;
                 }
 
                 // create new human player object and get humans move
@@ -106,13 +115,11 @@ public class Game {
                 if (!gameBoard.updateBoard(second, 2)) {
                     // white entered invalid move, prompt to try again
                     System.out.println("Invalid move, try again.");
-                    dontSkip = false;
                     continue;
                 }
                 // print board after whites turn
                 printBoard(gameBoard.getBoard());
-                // set dontSkip back to true
-                dontSkip = true;
+
             }
         }
 
@@ -151,9 +158,7 @@ public class Game {
         System.out.println();
         System.out.println();
     }
-    
 
-	
     public static void main(String[] args) {
         Game newGame = new Game();
         newGame.play();

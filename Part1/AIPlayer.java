@@ -13,9 +13,11 @@ public class AIPlayer extends Player {
     public Move getMove(Board board) {
         Board copy = new Board(board.copyBoard());
         minmax(copy, 10, getPlayerNumber());
-        String moveString = bestMove.toString();
-        String aiMove = parseMove(moveString);
-        System.out.println("AI move: " + aiMove);
+        if (bestMove != null) {
+            String moveString = bestMove.toString();
+            String aiMove = parseMove(moveString);
+            System.out.println("AI move: " + aiMove);
+        }
         return bestMove;
     }
 

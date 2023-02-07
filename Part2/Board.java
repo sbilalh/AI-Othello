@@ -28,12 +28,12 @@ public class Board {
             for (int j = 0; j < this.board[0].length; j++) {
                 // 0's for empty positions
                 this.board[i][j] = EMPTY;
-                // b2 & c3 set to white (-1)
-                if ((i == 1 && j == 1) || (i == 2 && j == 2)) {
+                // d4 & e5 set to white (-1)
+                if ((i == 3 && j == 3) || (i == 4 && j == 4)) {
                     this.board[i][j] = WHITE;
                 }
-                // b3 & c2 set to black (1)
-                if ((i == 2 && j == 1) || (i == 1 && j == 2)) {
+                // d5 & e4 set to black (1)
+                if ((i == 4 && j == 3) || (i == 3 && j == 4)) {
                     this.board[i][j] = BLACK;
                 }
             }
@@ -167,7 +167,7 @@ public class Board {
 
     // method to copy board
     public int[][] copyBoard() {
-        int[][] copy = new int[4][4];
+        int[][] copy = new int[8][8];
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[0].length; j++) {
                 copy[i][j] = this.board[i][j];
