@@ -12,7 +12,7 @@ public class AIPlayer extends Player {
     // creates a copy of the board and calls minmax on that cpy with a depth of 10
     public Move getMove(Board board) {
         Board copy = new Board(board.copyBoard());
-        minmax(copy, 10, getPlayerNumber());
+        minmax(copy, getPlayerNumber());
         if (bestMove != null) {
             String moveString = bestMove.toString();
             String aiMove = parseMove(moveString);
