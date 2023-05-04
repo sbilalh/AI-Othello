@@ -1,5 +1,4 @@
-# CSC 242 Project1
-## Collaborators: Syed Bilal Hussain (shussa11, 31647397), Steven Burgos (sburgos2, 31398404)
+# AI Othello
 
 ## There are two folders in this project:
 
